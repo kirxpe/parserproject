@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import schedule
-import time
+from fastapi import FastAPI
 
 def get_hacker_news_links():
     url = "https://news.ycombinator.com/newest"
@@ -17,5 +16,13 @@ def get_hacker_news_links():
 
     return links
 
-hacker_news_list = get_hacker_news_links()
-print(hacker_news_list)
+app = FastAPI()
+
+@app.get("/test")
+def get_info():
+    links = get_hacker_news_links()
+    return links
+
+
+
+
