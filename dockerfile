@@ -1,15 +1,12 @@
-FROM python:3.11
+FROM python:3.12
 
-RUN mkdir -p /usr/src/app/
-WORKDIR /usr/src/app/
+WORKDIR /app
 
-COPY . /usr/src/app/
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-
-
-
-
-
-
